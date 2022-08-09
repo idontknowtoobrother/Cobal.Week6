@@ -1,0 +1,51 @@
+       IDENTIFICATION DIVISION. 
+       PROGRAM-ID. WRITE-EMP1.
+       AUTHOR. JAKKRIT
+
+       ENVIRONMENT DIVISION. 
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL. 
+           SELECT EMP-FILE ASSIGN TO "emp1.dat"
+              ORGANIZATION IS LINE SEQUENTIAL.
+       DATA DIVISION. 
+       FILE SECTION.
+       FD  EMP-FILE.
+       01  EMP-DETAILS.
+           88 END-OF-EMP-FILE VALUE HIGH-VALUE .
+           05 EMP-SSN PIC 9(9).
+           05 EMP-NAME.
+              10 EMP-SURNAME PIC X(15).
+              10 EMP-FORNAME PIC X(10).
+           05 EMP-DATE-OF-BIRTH.
+              10 EMP-YOB PIC 9(4).
+              10 EMP-MOB PIC 9(2).
+              10 EMP-DOB PIC 9(2).
+           05 EMP-GENDER PIC X.
+
+       PROCEDURE DIVISION.
+       BEGIN.
+           OPEN OUTPUT EMP-FILE 
+           MOVE "123456789" TO EMP-SSN
+           MOVE "JAKKRIT" TO EMP-FORNAME
+           MOVE "CHAOPRON" TO EMP-SURNAME
+           MOVE "20010419" TO EMP-DATE-OF-BIRTH 
+           MOVE "M" TO EMP-GENDER
+           WRITE EMP-DETAILS 
+
+           MOVE "153189584" TO EMP-SSN
+           MOVE "SAKAK" TO EMP-FORNAME
+           MOVE "KOA" TO EMP-SURNAME
+           MOVE "20010829" TO EMP-DATE-OF-BIRTH 
+           MOVE "M" TO EMP-GENDER
+           WRITE EMP-DETAILS
+
+           MOVE "164386519" TO EMP-SSN
+           MOVE "YOIMIYA" TO EMP-FORNAME
+           MOVE "NAGANO" TO EMP-SURNAME
+           MOVE "20010420" TO EMP-DATE-OF-BIRTH 
+           MOVE "F" TO EMP-GENDER
+           WRITE EMP-DETAILS  
+
+           CLOSE EMP-FILE 
+           GOBACK 
+           .
